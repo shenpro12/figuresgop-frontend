@@ -1,0 +1,15 @@
+<div class="sloganContainer">
+  <div>
+    <div
+      *ngFor="let i of data"
+      class="flex-1 flex justify-center flex-col items-center"
+    >
+      <fa-icon [icon]="i.icon" class="mb-4 text-4xl"></fa-icon>
+      <h2 class="font-medium mb-3 text-center">{{ i.headerText }}</h2>
+      <p class="text-sm text-black/70 text-center">{{ i.textContent }}</p>
+      <div
+        class="mt-5 hover:cursor-pointer hover:text-red-600 duration-300 flex justify-center items-center"
+      ></div>
+    </div>
+  </div>
+</div>

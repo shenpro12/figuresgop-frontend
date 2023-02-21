@@ -1,0 +1,45 @@
+<h1 class="w-full text-center pt-10 mb-4 font-medium text-3xl">Tìm kiếm</h1>
+<p class="text-center mb-6 text-black/70 text-sm" *ngIf="dataRender.length">
+  Có
+  <span class="text-black font-semibold">{{ dataRender.length }} sản phẩm</span>
+  cho tìm kiếm
+</p>
+<div class="w-14 h-1 bg-black/80 mx-auto"></div>
+<div *ngIf="dataRender.length; else elseBlock" class="pb-7">
+  <p class="text-sm my-7 text-black/70 mx-auto header">
+    Kết quả tìm kiếm cho
+    <span class="font-semibold text-black">" {{ currentParam }} "</span>
+  </p>
+
+  <page-content
+    [productList]="dataRender"
+    [currentPage]="currentPage"
+  ></page-content>
+  <page-control
+    [currentPage]="currentPage.number"
+    [totalItem]="dataRender.length"
+    (onChangePageNumber)="changePageNumber($event)"
+  ></page-control>
+</div>
+<ng-template #elseBlock>
+  <h1 class="text-center text-xl font-semibold mt-7">
+    Không tìm thấy nội dung bạn yêu cầu
+  </h1>
+  <p class="text-black/70 text-center my-5 text-sm">
+    Không tìm thấy
+    <span class="text-black font-semibold">" {{ currentParam }} "</span>. Vui
+    lòng kiểm tra chính tả, sử dụng các từ tổng quát hơn và thử lại!
+  </p>
+  <div class="inputContainer flex mx-auto mt-10 mb-20">
+    <input
+      class="flex-1 px-5 py-3 bg-neutral-300/40 outline-none"
+      [(ngModel)]="input"
+    />
+    <div
+      (click)="searchHandler()"
+      class="flex justify-center px-5 items-center bg-black/80 text-xl text-white hover:cursor-pointer hover:bg-black/90 duration-200"
+    >
+      <fa-icon [icon]="icon.faSearch"></fa-icon>
+    </div>
+  </div>
+</ng-template>

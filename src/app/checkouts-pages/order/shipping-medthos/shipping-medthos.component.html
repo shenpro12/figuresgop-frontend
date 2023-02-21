@@ -1,0 +1,47 @@
+<h1 class="font-bold text-lg mt-4 mb-3">Phương thức vận chuyển</h1>
+<div class="w-full my-5 border-b border-l border-r border-black/20">
+  <div
+    *ngIf="!province || !district || !ward; else elseBlock"
+    class="border-t border-black/20 w-full p-5"
+  >
+    <img
+      src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940889/Untitled-1_ihihno.png"
+      class="w-28 h-28 mx-auto"
+    />
+    <p class="text-black/60 text-center text-sm mt-3">{{ status }}</p>
+  </div>
+  <ng-template #elseBlock>
+    <div
+      class="border-t border-black/20 w-full p-5 flex items-center text-black/70 text-sm hover:cursor-pointer"
+      (click)="selectMethod('DELIVERY')"
+    >
+      <div class="flex-1 flex items-center">
+        <input
+          type="checkbox"
+          class="w-5 h-5 hover:cursor-pointer pointer-events-none"
+          [value]="'DELIVERY'"
+          [checked]="checked == 'DELIVERY'"
+          (change)="checkBoxChange($event)"
+        />
+        <p class="ml-3">Giao hàng tận nơi</p>
+      </div>
+      <p>{{ transportFee | currency : "VND" : "symbol-narrow" : "1.0-3" }}</p>
+    </div>
+    <div
+      class="border-t border-black/20 w-full p-5 flex items-center text-black/70 text-sm hover:cursor-pointer"
+      (click)="selectMethod('DIRECT')"
+    >
+      <div class="flex-1 flex items-center">
+        <input
+          type="checkbox"
+          class="w-5 h-5 hover:cursor-pointer pointer-events-none"
+          [value]="'DIRECT'"
+          [checked]="checked == 'DIRECT'"
+          (change)="checkBoxChange($event)"
+        />
+        <p class="ml-3">Nhận hàng trực tiếp tại Figure Shop</p>
+      </div>
+      <p>{{ 0 | currency : "VND" : "symbol-narrow" : "1.0-3" }}</p>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,265 @@
+@import "~swiper/css";
+@import "~swiper/css/navigation";
+@import "~swiper/css/pagination";
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+.mySwiper:hover {
+  cursor: pointer;
+}
+.item {
+  height: 350px;
+  background-color: white;
+  position: relative !important;
+  margin: 5px 0px;
+}
+.item:hover {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  display: none;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-family: "Font Awesome\ 6 free";
+  font-size: 16px;
+  font-weight: 700;
+}
+.swiper-button-next::after {
+  content: "\f105";
+}
+.swiper-button-prev::after {
+  content: "\f104";
+}
+.swiper-pagination-bullet-active {
+  background-color: rgba(255, 0, 0, 0.626);
+}
+.relatedProductContainer {
+  width: 95%;
+  height: max-content;
+  margin: 20px auto 50px auto;
+  background-color: white;
+  border-top: 1px solid rgba(194, 194, 194, 0.316);
+}
+.relatedProductContainer > h1 {
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+@media (min-width: 768px) {
+  .relatedProductContainer {
+    width: 750px;
+  }
+  .mySwiper:hover .swiper-button-prev,
+  .mySwiper:hover .swiper-button-next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    border: 2px solid rgba(7, 7, 7, 0.115);
+    height: 25px;
+    width: 25px;
+    background-color: white;
+  }
+  .swiper-pagination {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) {
+  .relatedProductContainer {
+    width: 970px;
+  }
+}
+@media (min-width: 1170px) {
+  .relatedProductContainer {
+    width: 1170px;
+  }
+}
+.imgContainer {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+.imgContainer > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+}
+.imgContainer > div > div {
+  width: 100%;
+  height: 100%;
+}
+.imgContainer > img {
+  width: 100%;
+}
+.mainImg {
+  position: absolute;
+  transition: 0.7s ease;
+  opacity: 1;
+}
+.imgContainer > img:nth-child(3) {
+  transition: 0.7s ease;
+  opacity: 0;
+}
+.item:hover > a > .imgContainer > .mainImg {
+  opacity: 0;
+}
+.item:hover > a > .imgContainer > img:nth-child(3) {
+  opacity: 1;
+}
+.item:hover > a > .imgContainer > div > div {
+  animation: flash-in 0.7s ease;
+}
+.item > a > .imgContainer > div > div {
+  animation: flash-out 0.7s ease;
+}
+@keyframes flash-in {
+  0% {
+    opacity: 0.5;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    opacity: 0;
+    background-color: transparent;
+  }
+}
+@keyframes flash-out {
+  0% {
+    opacity: 0.5;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    opacity: 0;
+    background-color: transparent;
+  }
+}
+.item > a > div:nth-child(2) {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  padding-bottom: 16px;
+  text-align: center;
+  background-color: rgb(255 255 255 / 0.6);
+}
+.item > a > div:nth-child(2) > p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 83.333333%;
+  font-weight: 500;
+  margin: 0px auto;
+  color: black;
+}
+.priceWithDiscount {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+  font-weight: 500;
+  overflow-wrap: break-word;
+  margin: 0px auto;
+}
+.priceWithDiscount > span {
+  color: rgb(0 0 0 / 0.4);
+  font-weight: 500;
+  text-decoration-line: line-through;
+}
+.price {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+  font-weight: 500;
+  margin: 0px auto;
+}
+.discount {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+  padding: 4px 8px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0.125rem /* 2px */;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.discount > p {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  font-size: 11px;
+  margin: 0px;
+}
+.item > div:nth-child(2) {
+  height: 100%;
+  width: 100%;
+  width: 100%;
+  left: 0px;
+  right: 0px;
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  top: 7rem;
+}
+.item > div:nth-child(2) > div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.item > div:nth-child(2) > div > div {
+  width: 83.333333%;
+  display: flex;
+  display: flex;
+  margin-top: 0.75rem /* 12px */;
+  margin-bottom: 0.5rem /* 8px */;
+  border-radius: 0.25rem /* 4px */;
+  overflow: hidden;
+}
+.item > div:nth-child(2) > div > div > div:nth-child(1) {
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+  padding: 5px 0px;
+}
+.item > div:nth-child(2) > div > div > div:nth-child(2) {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+  padding: 7px 0px;
+}
+.item > div:nth-child(2) {
+  transition: 0.5s ease;
+}
+.item:hover > div:nth-child(2) {
+  top: 0px;
+}
+.item > a > div:nth-child(2) {
+  transition: 0.5s ease;
+}
+.item:hover > a > div:nth-child(2) {
+  padding-bottom: 50px;
+}
+.flash {
+  z-index: 1;
+}
+.icon {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  height: 18px;
+  width: 18px;
+}

@@ -1,0 +1,82 @@
+<div class="galleryContainer">
+  <div>
+    <swiper
+      [loop]="true"
+      [navigation]="true"
+      [spaceBetween]="5"
+      [pagination]="{ clickable: true }"
+      [thumbs]="{ swiper: thumbsSwiper }"
+      (slidesLengthChange)="slideTo(1)"
+      (init)="initSwiper($event)"
+      (slideChange)="swiperChange($event)"
+      class="mainSlide"
+    >
+      <ng-template *ngFor="let i of dataRender" swiperSlide class="item">
+        <img
+          [src]="convertToSafeSrc(i)"
+          alt="thumb"
+          (click)="toggleFullScreenSliderHandle()"
+      /></ng-template>
+    </swiper>
+    <div *ngIf="loading" class="prog">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </div>
+  <div>
+    <swiper
+      (swiper)="thumbsSwiper = $event"
+      [direction]="'vertical'"
+      [mousewheel]="true"
+      [spaceBetween]="10"
+      [slidesPerView]="6"
+      [watchSlidesProgress]="true"
+      class="thumbnails"
+    >
+      <ng-template *ngFor="let i of dataRender" swiperSlide class="thumbItem"
+        ><img [src]="convertToSafeSrc(i)" alt="thumb"
+      /></ng-template>
+    </swiper>
+  </div>
+</div>
+
+<div *ngIf="toggleFullScreenSlider" class="fullScreenSlides">
+  <div class="slidesInfo">
+    <p>{{ activeSlideIndex + 1 }}/{{ dataRender && dataRender.length }}</p>
+  </div>
+  <div class="controll">
+    <div *ngIf="!loading" (click)="autoPlay()" title="AutoPlay">
+      <fa-icon
+        [icon]="fullScreenSlideTimer ? icon.faPause : icon.faPlay"
+        class="icon"
+      ></fa-icon>
+    </div>
+    <div (click)="zoomToItem()" title="Zoom">
+      <fa-icon [icon]="icon.faMagnifyingGlass" class="icon"></fa-icon>
+    </div>
+    <div (click)="toggleFullScreenSliderHandle()" title="Close">
+      <fa-icon [icon]="icon.faClose" class="icon"></fa-icon>
+    </div>
+  </div>
+  <div *ngIf="fullScreenSlideTimer" class="autoPlayLoad"></div>
+  <mat-progress-bar
+    mode="indeterminate"
+    *ngIf="loading"
+    class="fullScreenProg"
+  ></mat-progress-bar>
+  <swiper
+    [initialSlide]="activeSlideIndex"
+    (init)="fullScreenSwiperInit($event)"
+    [navigation]="true"
+    [grabCursor]="true"
+    [loop]="true"
+    [zoom]="true"
+    [spaceBetween]="5"
+    (slideChange)="swiperChange($event)"
+    class="fullScreenSwiper"
+  >
+    <ng-template *ngFor="let i of dataRender" swiperSlide
+      ><div class="fullScreenItem swiper-zoom-container">
+        <img [src]="convertToSafeSrc(i)" /></div
+    ></ng-template>
+  </swiper>
+</div>

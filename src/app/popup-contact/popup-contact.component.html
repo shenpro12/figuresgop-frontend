@@ -1,0 +1,18 @@
+<div
+  *ngIf="show"
+  class="fixed top-0 bottom-0 left-0 right-0 bg-black/70 justify-center items-center p-5 flex z-200"
+>
+  <div
+    class="absolute text-white text-4xl top-3 right-5 hover:cursor-pointer"
+    (click)="closePopup()"
+  >
+    <fa-icon [icon]="icon.faClose"></fa-icon>
+  </div>
+  <a
+    href="https://www.facebook.com/profile.php?id=100014011180696"
+    target="_blank"
+  >
+    <img
+      src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940887/popup_contact_banner_nvu3tw.webp"
+  /></a>
+</div>

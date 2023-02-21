@@ -1,0 +1,78 @@
+@import "swiper/css";
+@import "swiper/css";
+@import "swiper/css/pagination";
+@import "swiper/css/navigation";
+.mainSlider {
+  width: 100%;
+  height: min-content;
+}
+.swiper-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 17px !important;
+}
+.swiper-pagination > span {
+  background-color: rgb(210, 0, 0);
+  transition: 0.3s ease;
+  width: 5.2px;
+  height: 5.2px;
+  opacity: 1;
+  border: 2.4px solid rgb(210, 0, 0);
+}
+.swiper-pagination-bullet-active {
+  background-color: transparent !important;
+  width: 11px !important;
+  height: 11px !important;
+}
+.tlImg,
+.mbImg {
+  width: 100%;
+}
+.tlImg {
+  display: none;
+  min-height: 340px;
+  object-fit: cover;
+}
+.mbImg {
+  display: block;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  display: none;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-family: "Font Awesome\ 6 free";
+  font-size: 20px;
+  font-weight: 700;
+}
+.swiper-button-next::after {
+  content: "\f105";
+}
+.swiper-button-prev::after {
+  content: "\f104";
+}
+@media (min-width: 855px) {
+  .tlImg {
+    display: block;
+  }
+  .mbImg {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .mainSlider:hover .swiper-button-prev,
+  .mainSlider:hover .swiper-button-next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    border: 2px solid rgba(7, 7, 7, 0.115);
+    height: 35px;
+    width: 35px;
+    background-color: white;
+    margin: 0px 25px;
+  }
+}

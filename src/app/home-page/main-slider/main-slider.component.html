@@ -1,0 +1,8 @@
+<swiper [config]="config" class="mainSlider">
+  <ng-template swiperSlide *ngFor="let i of sliderImg">
+    <a routerLink="{{ i.url }}">
+      <img src="{{ i.tl }}" class="tlImg" />
+      <img src="{{ i.mb }}" class="mbImg"
+    /></a>
+  </ng-template>
+</swiper>

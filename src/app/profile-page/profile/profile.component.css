@@ -1,0 +1,13 @@
+@media (min-width: 768px) {
+  .updateBtn {
+    justify-content: flex-end;
+  }
+  .updateBtn > p {
+    padding: 8px 16px;
+  }
+}
+@media (min-width: 992px) {
+  .content {
+    display: flex;
+  }
+}

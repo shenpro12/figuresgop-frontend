@@ -1,0 +1,22 @@
+.header,
+.inputContainer {
+  width: 95%;
+}
+@media (min-width: 768px) {
+  .header,
+  .inputContainer {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .header,
+  .inputContainer {
+    width: 970px;
+  }
+}
+@media (min-width: 1170px) {
+  .header,
+  .inputContainer {
+    width: 1170px;
+  }
+}

@@ -1,0 +1,13 @@
+<div *ngIf="dataRender" class="z-20 productDetailContainer">
+  <app-gallery
+    class="flex-1 z-30 gallery"
+    [productData]="dataRender"
+  ></app-gallery>
+
+  <app-detail class="flex-1 detail" [dataRender]="dataRender"> </app-detail>
+</div>
+<app-related-products
+  *ngIf="dataRender"
+  class="z-1"
+  [currentProduct]="dataRender"
+></app-related-products>

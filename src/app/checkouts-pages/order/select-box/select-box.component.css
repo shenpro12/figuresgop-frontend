@@ -1,0 +1,19 @@
+.itemSelect {
+  align-items: flex-start;
+  color: rgb(125, 125, 255);
+  font-size: 10px;
+}
+.selectContainer {
+  flex-direction: column;
+}
+.selectContainer > div:nth-child(2) {
+  margin: 12px 0px !important;
+}
+@media (min-width: 992px) {
+  .selectContainer {
+    flex-direction: row;
+  }
+  .selectContainer > div:nth-child(2) {
+    margin: 0px 8px !important;
+  }
+}

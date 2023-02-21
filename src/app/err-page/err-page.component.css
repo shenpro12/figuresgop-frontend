@@ -1,0 +1,25 @@
+.errPageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.errPageContainer > span {
+  font-size: 170px;
+  color: white;
+  display: block;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9,
+    0 5px 0 #aaa, 0 6px 1px rgb(0 0 0 / 10%), 0 0 5px rgb(0 0 0 / 10%),
+    0 1px 3px rgb(0 0 0 / 30%), 0 3px 5px rgb(0 0 0 / 20%),
+    0 5px 10px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 20%),
+    0 20px 20px rgb(0 0 0 / 15%);
+}
+.subText {
+  max-width: 520px;
+  text-align: center;
+  color: rgb(71, 71, 71);
+}

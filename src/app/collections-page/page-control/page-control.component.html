@@ -1,0 +1,79 @@
+<div
+  *ngIf="totalItem / totalItemPerView > 1 && pageNumber.includes(currentPage)"
+  class="flex justify-center items-center my-9 text-black/30 font-bold relative"
+>
+  <input type="checkbox" class="hidden" id="input" />
+  <div class="inputContainer">
+    <input placeholder="Nhập số trang cần tìm" [(ngModel)]="inputPageNumber" />
+    <div
+      class="hover:cursor-pointer hover:text-black duration-500"
+      title="Tìm"
+      (click)="changPageNumber(inputPageNumber)"
+    >
+      <fa-icon [icon]="faComputerMouse"></fa-icon>
+    </div>
+  </div>
+
+  <div
+    *ngIf="currentPage > 1"
+    class="mx-2"
+    (click)="changPageNumber(currentPage - 1)"
+  >
+    <fa-icon
+      [icon]="faArrowLeftLong"
+      class="hover:cursor-pointer hover:text-black"
+    ></fa-icon>
+  </div>
+
+  <div *ngFor="let i of pageNumber" class="mx-2" (click)="changPageNumber(i)">
+    <p
+      [ngClass]="
+        i == currentPage
+          ? 'text-black hover:cursor-pointer'
+          : 'hover:cursor-pointer hover:text-black'
+      "
+    >
+      {{ i }}
+    </p>
+  </div>
+
+  <div
+    *ngIf="
+      totalItem / totalItemPerView > 5 &&
+      currentPage < totalItem / totalItemPerView - 2
+    "
+    class="flex"
+  >
+    <div class="mx-2">
+      <p>...</p>
+    </div>
+    <div class="mx-2">
+      <p
+        class="hover:cursor-pointer hover:text-black"
+        (click)="changPageNumber()"
+      >
+        {{ totalItem | roundBelow : totalItemPerView }}
+      </p>
+    </div>
+  </div>
+
+  <label
+    for="input"
+    class="mx-2 flex justify-center items-center"
+    title="Nhập trang cần đến"
+  >
+    <p class="text-black/70 p-1 text-sm">GO</p>
+    <fa-icon [icon]="faSort" class="text-xs text-black/70"></fa-icon>
+  </label>
+
+  <div
+    *ngIf="currentPage < totalItem / totalItemPerView"
+    class="mx-2"
+    (click)="changPageNumber(currentPage + 1)"
+  >
+    <fa-icon
+      [icon]="faArrowRightLong"
+      class="hover:cursor-pointer hover:text-black"
+    ></fa-icon>
+  </div>
+</div>

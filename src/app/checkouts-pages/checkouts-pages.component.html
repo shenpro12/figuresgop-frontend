@@ -1,0 +1,26 @@
+<div *ngIf="!loading; else elseBlock">
+  <app-stock-problems
+    *ngIf="stockProblems; else order"
+    [cartData]="cartData"
+    [stockProblemData]="stockProblemData"
+    (onUpdateCart)="updateCart($event)"
+  ></app-stock-problems>
+  <ng-template #order
+    ><app-order
+      [cartData]="cartData"
+      (onStockError)="onStockError($event)"
+    ></app-order
+  ></ng-template>
+</div>
+<ng-template #elseBlock>
+  <div class="w-full py-60 flex items-center flex-col">
+    <img
+      src="https://res.cloudinary.com/duhoyt34t/image/upload/v1675138423/menhera_chan__74__by_menherachangif_devyzqe_jao4eb_ejyj6q.gif"
+      class="w-36 h-28 mx-auto mb-4"
+    />
+    <div class="flex">
+      <p class="mx-auto text-sm font-semibold">Kiểm tra kho hàng</p>
+      <fa-icon [icon]="icon.faSpinner" class="ml-2" [spin]="true"></fa-icon>
+    </div>
+  </div>
+</ng-template>

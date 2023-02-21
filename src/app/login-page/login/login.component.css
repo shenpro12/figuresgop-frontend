@@ -1,0 +1,27 @@
+.loginPageContainer {
+  width: 96%;
+  margin: 30px auto 50px auto;
+}
+.loginPageContainer > div,
+.loginPageContainer > p {
+  width: 95%;
+}
+@media (min-width: 768px) {
+  .loginPageContainer {
+    width: 750px;
+  }
+  .loginPageContainer > div,
+  .loginPageContainer > p {
+    width: 500px;
+  }
+}
+@media (min-width: 992px) {
+  .loginPageContainer {
+    width: 970px;
+  }
+}
+@media (min-width: 1170px) {
+  .loginPageContainer {
+    width: 1170px;
+  }
+}

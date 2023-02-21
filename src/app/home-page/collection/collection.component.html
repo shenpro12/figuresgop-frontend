@@ -1,0 +1,20 @@
+<div class="collectionContainer">
+  <div
+    *ngFor="let i of data"
+    class="flex-1 mx-4 relative overflow-hidden mt-7 hover:cursor-default"
+  >
+    <a routerLink="/collections/{{ i.slug }}">
+      <img src="{{ i.src }}" />
+      <div class="contentContainer">
+        <div><div></div></div>
+        <h3 class="text-lg">{{ i.title }}</h3>
+        <h1>{{ i.headerText }}</h1>
+        <p>{{ i.contentText }}</p>
+        <button class="hover:bg-red-600 duration-300 z-0">
+          Xem ngay
+          <fa-icon [icon]="faAngleRight" class="ml-3 text-xs"></fa-icon>
+        </button>
+      </div>
+    </a>
+  </div>
+</div>

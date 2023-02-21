@@ -1,0 +1,56 @@
+<div class="flex flex-wrap currentFilterContainer">
+  <div
+    *ngIf="filter.manufactuter.length"
+    class="rounded-full flex items-center px-3 py-1 my-1 border border-black/10 mr-2 fillterItem"
+  >
+    <p class="text-medium-xs font-bold text-black/60">
+      <span class="text-black/60 font-normal">Thương hiệu: </span
+      >{{ getText(filter.manufactuter) }}
+    </p>
+
+    <div (click)="clearManufacturer()">
+      <fa-icon
+        class="text-sm ml-2 hover:cursor-pointer text-black/50 hover:text-black"
+        [icon]="faClose"
+      ></fa-icon>
+    </div>
+  </div>
+  <div
+    *ngIf="filter.price.length"
+    class="rounded-full flex items-center px-3 py-1 my-1 border border-black/10 mr-2 fillterItem"
+  >
+    <p class="text-medium-xs font-bold text-black/60">
+      <span class="text-black/60 font-normal">Lọc giá: </span
+      >{{ getText(filter.price) }}
+    </p>
+    <div (click)="clearPrice()">
+      <fa-icon
+        class="text-sm ml-2 hover:cursor-pointer text-black/50 hover:text-black"
+        [icon]="faClose"
+      ></fa-icon>
+    </div>
+  </div>
+  <div
+    *ngIf="filter.scale.length"
+    class="rounded-full flex items-center px-3 py-1 my-1 border border-black/10 mr-2 fillterItem"
+  >
+    <p class="text-medium-xs font-bold text-black/60">
+      <span class="text-black/60 font-normal">Tỉ lệ: </span
+      >{{ getText(filter.scale) }}
+    </p>
+    <div (click)="clearScale()">
+      <fa-icon
+        class="text-sm ml-2 hover:cursor-pointer text-black/50 hover:text-black"
+        [icon]="faClose"
+      ></fa-icon>
+    </div>
+  </div>
+  <div *ngIf="checkToltalFillter()" class="flex items-center ml-1">
+    <p
+      class="text-red-500 underline text-medium-xs hover:cursor-pointer hover:text-red-600"
+      (click)="clearFilter()"
+    >
+      Xóa hết
+    </p>
+  </div>
+</div>

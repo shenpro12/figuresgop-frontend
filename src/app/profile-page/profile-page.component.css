@@ -1,0 +1,48 @@
+.profileContainer {
+  width: 100%;
+  margin: 30px auto 50px auto;
+  padding: 10px;
+}
+.sideBar,
+.profileContent {
+  width: 100%;
+  height: max-content;
+}
+.profileContent {
+  margin-top: 20px;
+}
+.sidaBarList > li > p::before {
+  content: "\f192";
+  font-family: "FontAwesome";
+  font-size: 8px;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: 2px;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .profileContainer {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .profileContainer {
+    width: 970px;
+    display: flex;
+  }
+  .sideBar {
+    width: 20%;
+    margin-right: 20px;
+    position: sticky;
+    top: 10px;
+  }
+  .profileContent {
+    width: 80%;
+    margin-top: 0px;
+  }
+}
+@media (min-width: 1170px) {
+  .profileContainer {
+    width: 1170px;
+  }
+}

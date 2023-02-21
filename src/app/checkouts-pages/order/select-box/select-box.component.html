@@ -1,0 +1,55 @@
+<div class="w-full flex justify-between selectContainer">
+  <div
+    class="border-2 border-black/10 px-1 relative focus-within:border-sky-500 flex-1 duration-150"
+  >
+    <label
+      class="text-black/60 absolute h-full w-full text-sm flex items-center pl-3 -z-1"
+      >Tỉnh / thành<span class="text-red-600">*</span></label
+    >
+    <select
+      class="outline-none px-5 py-3 w-full bg-transparent z-1 hover:cursor-pointer"
+      (change)="provincesChange($event)"
+    >
+      <option class="hidden" value=""></option>
+      <option *ngFor="let i of provincesData" [value]="i.id">
+        {{ i.name }}
+      </option>
+    </select>
+  </div>
+
+  <div
+    class="border-2 border-black/10 px-1 relative focus-within:border-sky-500 flex-1 duration-150"
+  >
+    <label
+      class="text-black/60 absolute h-full w-full text-sm flex items-center pl-3 -z-1"
+      >Quận / huyện<span class="text-red-600">*</span></label
+    >
+    <select
+      class="outline-none px-5 py-3 w-full bg-transparent z-1 hover:cursor-pointer"
+      (change)="districtsChange($event)"
+    >
+      <option class="hidden" value=""></option>
+      <option *ngFor="let i of districtsData" [value]="i.id">
+        {{ i.name }}
+      </option>
+    </select>
+  </div>
+
+  <div
+    class="border-2 border-black/10 px-1 relative focus-within:border-sky-500 flex-1 duration-150"
+  >
+    <label
+      class="text-black/60 absolute h-full w-full text-sm flex items-center pl-3 -z-1"
+      >Phường / xã<span class="text-red-600">*</span></label
+    >
+    <select
+      class="outline-none px-5 py-3 w-full bg-transparent z-1 hover:cursor-pointer"
+      (change)="wardsChange($event)"
+    >
+      <option class="hidden" value=""></option>
+      <option *ngFor="let i of wardsData" [value]="i.id">
+        {{ i.name }}
+      </option>
+    </select>
+  </div>
+</div>

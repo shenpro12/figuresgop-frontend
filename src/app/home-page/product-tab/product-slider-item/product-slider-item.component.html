@@ -1,0 +1,65 @@
+<swiper
+  [slidesPerView]="gridCol"
+  [grid]="{
+    rows: 2
+  }"
+  [autoplay]="{ delay: 5000, disableOnInteraction: false }"
+  [spaceBetween]="10"
+  [navigation]="true"
+  class="mySwiper"
+>
+  <ng-template swiperSlide *ngFor="let i of productList">
+    <div class="contentContainer" [ngClass]="containerClass">
+      <div class="item">
+        <a [routerLink]="getURL(i.name, i.ID)">
+          <div class="imgContainer">
+            <div class="flash">
+              <div></div>
+            </div>
+            <img [src]="convertToSafeSrc(i.thumb_url)" class="mainImg" />
+            <img [src]="convertToSafeSrc(i.subImg)" />
+          </div>
+
+          <div>
+            <p>{{ i.name }}</p>
+            <div *ngIf="i.discount; else elseBlock">
+              <p class="priceWithDiscount">
+                {{
+                  getPriceWithDiscount(i.price, i.discount)
+                    | currency : "VND" : "symbol-narrow" : "1.0-3"
+                }}
+                <span>{{
+                  i.price | currency : "VND" : "symbol-narrow" : "1.0-3"
+                }}</span>
+              </p>
+            </div>
+            <ng-template #elseBlock
+              ><div>
+                <p class="price">
+                  {{ i.price | currency : "VND" : "symbol-narrow" : "1.0-3" }}
+                </p>
+              </div>
+            </ng-template>
+          </div>
+        </a>
+
+        <div>
+          <div>
+            <div>
+              <div title="Thêm vào giỏ" (click)="addToCart(i.ID)">
+                <fa-icon [icon]="icon.faCartShopping" class="icon"></fa-icon>
+              </div>
+              <div title="Mua hàng">
+                <fa-icon [icon]="icon.faBagShopping" class="icon"></fa-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="i.discount" class="discount">
+          <p>{{ i.discount }}%</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</swiper>

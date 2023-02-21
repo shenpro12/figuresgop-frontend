@@ -1,0 +1,76 @@
+.orderContainer {
+  width: 95%;
+  margin: 10px auto 50px auto;
+  display: flex;
+  flex-direction: column;
+}
+.order,
+.delivery,
+.orderSuccess,
+.successImg {
+  width: 100%;
+  padding: 0px 0px;
+}
+.order,
+.successImg {
+  height: max-content;
+  position: relative;
+}
+@media (min-width: 768px) {
+  .orderContainer {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .orderContainer {
+    width: 970px;
+    flex-direction: row-reverse;
+  }
+  .delivery,
+  .orderSuccess {
+    width: 60%;
+    padding: 0px 25px;
+  }
+  .order,
+  .successImg {
+    width: 40%;
+    padding: 0px 25px;
+    position: sticky;
+    top: 0px;
+    padding-bottom: 50px;
+  }
+  .successImg {
+    padding-bottom: 0px;
+  }
+  .discountCode_tablet {
+    display: none;
+  }
+  .order > div:nth-child(2) {
+    display: block !important;
+    background-color: white !important;
+    padding: 0px;
+    margin-top: 0px;
+  }
+  .order > div:nth-child(1) {
+    display: none !important;
+  }
+  .orderSuccess {
+    margin-top: 0px;
+  }
+}
+@media (min-width: 1170px) {
+  .orderContainer {
+    width: 1170px;
+  }
+}
+input:checked ~ label {
+  align-items: flex-start;
+  font-size: 12px;
+  color: rgb(125, 125, 255);
+  z-index: -1;
+}
+.buttonEnable {
+  pointer-events: none;
+  background-color: rgb(208, 208, 208) !important;
+  cursor: default;
+}

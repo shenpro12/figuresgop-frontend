@@ -1,0 +1,27 @@
+.registerPageContainer {
+  width: 96%;
+  margin: 30px auto 50px auto;
+}
+.registerPageContainer > div,
+.registerPageContainer > p {
+  width: 95%;
+}
+@media (min-width: 768px) {
+  .registerPageContainer {
+    width: 750px;
+  }
+  .registerPageContainer > div,
+  .registerPageContainer > p {
+    width: 500px;
+  }
+}
+@media (min-width: 992px) {
+  .registerPageContainer {
+    width: 970px;
+  }
+}
+@media (min-width: 1170px) {
+  .registerPageContainer {
+    width: 1170px;
+  }
+}

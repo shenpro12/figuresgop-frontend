@@ -1,0 +1,44 @@
+<div *ngIf="searchInput" class="w-full">
+  <div *ngIf="!dataRender.length; else elseBlock" class="py-3">
+    <p class="text-center text-black/60">Không tìm thấy!</p>
+  </div>
+  <ng-template #elseBlock>
+    <div class="w-full my-2 px-3 flex" *ngFor="let i of dataRender">
+      <a [routerLink]="getURL(i.name, i.ID)" (click)="clearResult()">
+        <img
+          [src]="convertToSafeSrc(i.thumb_url)"
+          class="w-14 h-20 object-cover"
+      /></a>
+      <div class="flex-1 px-3 py-1 break-all">
+        <a [routerLink]="getURL(i.name, i.ID)" (click)="clearResult()"
+          ><p
+            class="font-semibold text-black/60 hover:text-black/80 duration-200"
+          >
+            {{ i.name }}
+          </p></a
+        >
+        <p *ngIf="!i.discount; else discountBlock" class="text-red-600 mt-1">
+          {{ i.price | currency : "VND" : "symbol-narrow" : "1.0-3" }}
+        </p>
+        <ng-template #discountBlock>
+          <p class="text-red-600 mt-1">
+            {{
+              i.price * ((100 - i.discount) / 100)
+                | currency : "VND" : "symbol-narrow" : "1.0-3"
+            }}
+            <span class="line-through text-black/40 text-sm">{{
+              i.price | currency : "VND" : "symbol-narrow" : "1.0-3"
+            }}</span>
+          </p>
+        </ng-template>
+      </div>
+    </div>
+  </ng-template>
+  <div *ngIf="totalResult > 4" class="text-center">
+    <a routerLink="/search/{{ searchInput }}" (click)="clearResult()">
+      <p class="py-1 text-red-500 hover:cursor-pointer inline-block">
+        Xem thêm {{ totalResult - 4 }} sản phẩm
+      </p></a
+    >
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="flex items-center flex-col mt-3">
+  <h1 class="text-3xl font-medium mb-3 mt-5">{{ option.title }}</h1>
+  <p class="text-sm">{{ option.subText }}</p>
+</div>
+
+<div class="productContainer" [ngClass]="containerClass">
+  <div
+    class="flex-1 overflow-hidden hover:cursor-pointer relative imgContainer"
+  >
+    <a routerLink="collections/{{ option.query }}" routerLinkActive="active">
+      <div class="absolute w-full h-full flex justify-center z-20">
+        <div></div></div
+    ></a>
+    <img [src]="option.imageUrl" />
+  </div>
+  <div
+    class="flex-1 mt-5 relative productContent"
+    [ngClass]="productContainerClass"
+    [ngClass]="productList.length ? '' : 'h-minContent'"
+  >
+    <div
+      *ngIf="!productList.length; else elseBlock"
+      class="relative w-full h-full"
+      [ngClass]="option.imagePosition == 'top' || loadingClass ? 'h-44' : ''"
+    >
+      <app-loading></app-loading>
+    </div>
+    <ng-template #elseBlock>
+      <product-slider-item
+        [imgPositon]="option.imagePosition"
+        [productList]="productList"
+      ></product-slider-item
+    ></ng-template>
+  </div>
+</div>

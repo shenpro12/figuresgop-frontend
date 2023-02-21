@@ -1,0 +1,30 @@
+<div class="w-full">
+  <img [src]="dataRender.banner" class="w-full" />
+</div>
+<div>
+  <product-filter
+    [filter]="dataRender.filter"
+    [title]="dataRender.title"
+    (onChooseFilter)="onFilter($event)"
+  ></product-filter>
+  <current-filter
+    [filter]="dataRender.filter"
+    (onClearFilter)="onFilter($event)"
+  ></current-filter>
+
+  <div *ngIf="!mainData.length; else elseBlock" class="loading">
+    <app-loading></app-loading>
+  </div>
+  <ng-template #elseBlock>
+    <page-content
+      [productList]="dataRender.product"
+      [currentPage]="currentPage"
+    ></page-content>
+    <page-control
+      [totalItemPerView]="36"
+      [currentPage]="currentPage.number"
+      [totalItem]="dataRender.product.length"
+      (onChangePageNumber)="changePageNumber($event)"
+    ></page-control>
+  </ng-template>
+</div>

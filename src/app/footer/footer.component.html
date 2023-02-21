@@ -1,0 +1,226 @@
+<div class="w-full bg-white footerContainer">
+  <div
+    class="fixed p-2 right-4 bottom-16 bg-white border-2 z-10 border-black/10 hover:cursor-pointer hover:bg-red-600 hover:text-white hover:border-red-600 duration-200 hidden"
+    id="goTopBtn"
+    (click)="scrollTopHandle()"
+  >
+    <fa-icon [icon]="faArrowUp"></fa-icon>
+  </div>
+  <div>
+    <div class="text-center text-2xl font-semibold pt-10 pb-6 bg-neutral-200">
+      <h1>Follow Figure Shop on Instagram</h1>
+      <p class="text-medium-xs font-normal text-black/80">@figureshop.vn</p>
+    </div>
+
+    <div class="flex w-full flex-col pb-5 footerImgContainer">
+      <div *ngFor="let i of image" class="flex-1 flex">
+        <div *ngFor="let j of i" class="hover:cursor-pointer overflow-hidden">
+          <img src="{{ j }}" />
+          <div
+            class="h-full w-full bg-transparent absolute flex justify-center"
+          >
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="mb-3 w-full flex items-center flex-col hover:cursor-pointer toggleFooterContentContainer"
+    (click)="toggleInfoHandle()"
+  >
+    <p class="text-black/90">Thông tin thêm</p>
+    <div
+      class="bg-black w-6 h-6 text-xs rounded-full text-white flex justify-center items-center mt-3"
+    >
+      <fa-icon
+        [icon]="faAngleDown"
+        class="duration-500"
+        [ngClass]="iconRotate"
+      ></fa-icon>
+    </div>
+  </div>
+  <div class="footerContent flex" id="footerContent">
+    <div class="flex-1 bg-footer py-3 shopInfoContent">
+      <input type="checkbox" id="shopInfoContentInput" class="hidden" />
+      <label
+        class="flex justify-between hover:cursor-pointer"
+        for="shopInfoContentInput"
+        ><p class="text-white text-lg font-bold px-3">Giới thiệu Figure Shop</p>
+        <fa-icon
+          [icon]="faAngleDown"
+          class="text-white pr-6 font-bold text-lg downIcon"
+        ></fa-icon
+      ></label>
+
+      <div
+        class="w-full flex flex-col h-0 overflow-hidden opacity-0 shopInfoContentItem shopInfoItem"
+      >
+        <div class="text-white/40 text-sm px-3 w-full">
+          <p>
+            Giúp các bạn trẻ Việt Nam dễ dàng tiếp cận với mô hình figure Nhật
+            Bản
+          </p>
+        </div>
+        <div class="text-sm px-3 w-full">
+          <p class="text-white/60 font-semibold mb-3">
+            Địa chỉ:
+            <span class="text-white/40 font-normal"
+              >Tp.Thủ Đức, Tp. Hồ Chí Minh. Figure Shop chưa có không gian trưng
+              bày, bạn vui lòng hẹn trước khi đến</span
+            >
+          </p>
+          <p class="text-white/60 font-semibold mb-3">
+            Điện thoại:
+            <span class="text-white/40 font-normal">0362624976</span>
+          </p>
+          <p class="text-white/60 font-semibold mb-3">
+            Email:
+            <span class="text-white/40 font-normal"
+              >support.figureshop@gmail.com</span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-1 flex bg-footer flex-col customContent">
+      <div class="flex-1 p-3 border-t border-white/10">
+        <input type="checkbox" id="customerSupportInput" class="hidden" />
+        <label
+          class="flex justify-between hover:cursor-pointer"
+          for="customerSupportInput"
+          ><p class="text-white text-lg font-bold">Hỗ trợ khách hàng</p>
+          <fa-icon
+            [icon]="faAngleDown"
+            class="text-white pr-3 font-bold text-lg downIcon"
+          ></fa-icon>
+        </label>
+        <ul
+          class="text-white/40 h-0 overflow-hidden opacity-0 customerSupportItem"
+        >
+          <li class="list-disc list-inside text-sm pb-3">
+            <a routerLink="/pages/q&a" class="hover:text-white duration-200"
+              >Hỏi & đáp</a
+            >
+          </li>
+          <li class="list-disc list-inside text-sm">
+            <a
+              routerLink="/pages/about-us"
+              class="hover:text-white duration-200"
+              >Giới thiệu</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex-1 p-3 border-t border-white/10">
+        <input type="checkbox" id="customerCareInput" class="hidden" />
+        <label
+          class="flex justify-between hover:cursor-pointer"
+          for="customerCareInput"
+          ><p class="text-white text-lg font-bold">Chăm sóc khách hàng</p>
+          <fa-icon
+            [icon]="faAngleDown"
+            class="text-white pr-3 font-bold text-lg downIcon"
+          ></fa-icon
+        ></label>
+        <div class="h-0 overflow-hidden opacity-0 customerCareItem">
+          <div>
+            <div class="flex items-center text-white/40">
+              <fa-icon [icon]="faPhoneVolume" class="text-2xl"></fa-icon>
+              <div class="ml-5">
+                <a href="tel:+8462624679" class="text-2xl text-white block"
+                  >0362624679</a
+                >
+                <a href="mailto:support.figureshop@gmail.com" class="underline"
+                  >support.figureshop@gmail.com</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <p class="text-white text-lg font-bold mb-4">Follow Figure Shop</p>
+            <div class="flex">
+              <div
+                *ngFor="let item of brandsIcon"
+                class="text-white/40 p-2 mr-2 border border-white/40 h-8 w-8 flex justify-center items-center rounded duration-300 hover:border-red-600 hover:bg-red-600 hover:cursor-pointer hover:text-white"
+              >
+                <fa-icon [icon]="item"></fa-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10 py-5 bg-footer">
+    <p class="text-center text-medium-xs text-white/60">
+      Copyright © 2022
+      <span class="text-white/40">Figure Shop. Powered by LEVANDAT</span>
+    </p>
+  </div>
+
+  <div class="w-full h-11 bufferSpace bg-footer"></div>
+
+  <div
+    id="contact"
+    class="w-full h-11 z-20 flex justify-between items-center px-20 text-black/60 text-2xl bg-white border-t border-neutral-400/60 fixed bottom-0 footer_tablet"
+  >
+    <a href="tel:+8462624679">
+      <fa-icon class="hover:cursor-pointer" [icon]="faPhone"></fa-icon>
+    </a>
+    <a href="mailto:support.figureshop@gmail.com">
+      <fa-icon class="hover:cursor-pointer" [icon]="faEnvelope"></fa-icon>
+    </a>
+  </div>
+
+  <div id="social" class="fixed bottom-16 bg-transparent z-20 socialContainer">
+    <a
+      class="flex my-1 bg-white border border-black/10 p-2 items-center w-40 rounded-tr-sm rounded-br-sm"
+    >
+      <p class="text-sm flex-1 text-center mr-2">Fanpage</p>
+      <img
+        src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940885/fb_e1210bc2f7654eafa36eae6091ba4713_hz1ily.webp"
+        class="w-6 h-6"
+      />
+    </a>
+    <a
+      class="flex my-1 bg-white border border-black/10 p-2 items-center w-40 rounded-tr-sm rounded-br-sm"
+    >
+      <p class="text-sm flex-1 text-center mr-2">Messenger</p>
+      <img
+        src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940886/icon_chat_desktop_cisvd6.webp"
+        class="w-6 h-6"
+      />
+    </a>
+    <a
+      class="flex my-1 bg-white border border-black/10 p-2 items-center w-40 rounded-tr-sm rounded-br-sm"
+    >
+      <p class="text-sm flex-1 text-center mr-2">Instagram</p>
+      <img
+        src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940887/insta_3e1fe29a63cd40f786be924f2d8ced63_vhttxk.webp"
+        class="w-6 h-6"
+      />
+    </a>
+    <a
+      class="flex my-1 bg-white border border-black/10 p-2 items-center w-40 rounded-tr-sm rounded-br-sm"
+    >
+      <p class="text-sm flex-1 text-center mr-2">Zalo</p>
+      <img
+        src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940889/zalo_26191d3952cb4dc59003fb0c5f56c237_kr7der.webp"
+        class="w-6 h-6"
+      />
+    </a>
+    <a
+      class="flex my-1 bg-white border border-black/10 p-2 items-center w-40 rounded-tr-sm rounded-br-sm"
+    >
+      <p class="text-sm flex-1 text-center mr-2">Telegram</p>
+      <img
+        src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940888/telegram_8c948698773d4654bda0c328e9d4e644_zupdfn.webp"
+        class="w-6 h-6"
+      />
+    </a>
+  </div>
+</div>

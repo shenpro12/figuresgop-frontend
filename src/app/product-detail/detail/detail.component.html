@@ -1,0 +1,192 @@
+<div>
+  <h1 class="text-2xl font-semibold">{{ dataRender.name }}</h1>
+</div>
+
+<div class="flex flex-wrap items-center my-5">
+  <p
+    *ngIf="dataRender.discount"
+    class="text-red-500 py-1 px-3 bg-neutral-300/30 rounded-sm inline-block font-medium text-xs mr-5"
+  >
+    -{{ dataRender.discount }}%
+  </p>
+  <div *ngIf="dataRender.discount; else elseBlock">
+    <p class="text-red-500 font-medium break-words text-xl">
+      {{
+        getPriceWithDiscount(dataRender.price, dataRender.discount)
+          | currency : "VND" : "symbol-narrow" : "1.0-3"
+      }}
+      <span class="text-black/40 font-medium line-through text-base">{{
+        dataRender.price | currency : "VND" : "symbol-narrow" : "1.0-3"
+      }}</span>
+    </p>
+  </div>
+  <ng-template #elseBlock
+    ><div>
+      <p class="text-red-500 font-medium text-xl">
+        {{ dataRender.price | currency : "VND" : "symbol-narrow" : "1.0-3" }}
+      </p>
+    </div>
+  </ng-template>
+</div>
+
+<div class="border-b border-t py-3 border-black/10">
+  <div class="w-full flex justify-between flex-wrap">
+    <div class="flex mt-2 mx-auto">
+      <div
+        class="flex items-center px-3 bg-neutral-300/30 hover:cursor-pointer hover:bg-neutral-300/40"
+        (click)="decreaseTotalProduct()"
+      >
+        <fa-icon [icon]="icon.faMinus"></fa-icon>
+      </div>
+      <input
+        class="w-14 border-t border-b border-black/10 px-2 py-1 text-center font-medium"
+        [(ngModel)]="totalProduct"
+        (input)="verifyInput($event)"
+      />
+      <div
+        class="flex items-center px-3 bg-neutral-300/30 hover:cursor-pointer hover:bg-neutral-300/40"
+        (click)="increaseTotalProduct()"
+      >
+        <fa-icon [icon]="icon.faPlus"></fa-icon>
+      </div>
+    </div>
+
+    <div
+      class="flex mt-2 mx-auto items-center justify-center px-4 py-2 bg-red-600/90 hover:cursor-pointer"
+      (click)="addToCart()"
+    >
+      <p class="text-white font-medium uppercase">Thêm vào giỏ hàng</p>
+    </div>
+
+    <div
+      class="flex mt-2 mx-auto px-4 py-2 bg-neutral-300/30 items-center hover:cursor-pointer"
+    >
+      <img
+        src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940886/icon_chat_desktop_cisvd6.webp"
+        class="w-7 h-7 mr-3"
+      />
+      <p class="text-red-500">Chat ngay</p>
+    </div>
+  </div>
+
+  <div>
+    <div class="flex my-7 items-center">
+      <fa-icon
+        [icon]="icon.faBoxesStacked"
+        class="mr-4 text-xl text-black/30"
+      ></fa-icon>
+      <div class="text-black/60 text-sm">
+        <p>
+          <fa-icon [icon]="icon.faCheck" class="mr-2 text-black"></fa-icon
+          ><span class="text-black font-medium"
+            >Sản phẩm chính hãng từ Nhật Bản.</span
+          >
+        </p>
+        <p>
+          <fa-icon [icon]="icon.faCheck" class="mr-2 text-black"></fa-icon
+          ><span class="text-black font-medium">Trước khi bạn đặt mua:</span
+          ><span>
+            vui lòng check lại giá hiện tại với admin, vì khả năng giá đã thay
+            đổi so với lần cập nhật gần nhất, hoặc hết hàng, hết suất order. Do
+            giới hạn số lượng, figure Nhật sẽ hiếm dần theo thời gian, dẫn tới
+            giá tăng.</span
+          >
+        </p>
+      </div>
+    </div>
+
+    <div class="flex my-5 items-center">
+      <fa-icon
+        [icon]="icon.faTruckFast"
+        class="mr-4 text-xl text-black/30"
+      ></fa-icon>
+      <div class="text-black/60 text-sm">
+        <p>
+          <fa-icon [icon]="icon.faCheck" class="mr-2 text-black"></fa-icon
+          ><span>Với sản phẩm</span
+          ><span class="text-black font-medium">
+            CÓ SẴN, bạn sẽ được giao ngay.</span
+          >
+        </p>
+        <p>
+          <fa-icon [icon]="icon.faCheck" class="mr-2 text-black"></fa-icon
+          ><span>Với sản phẩm</span
+          ><span class="text-black font-medium">
+            ĐẶT TRƯỚC, bạn cần cọc 50% giá trị sản phẩm. </span
+          ><span
+            >Hàng về VN khoảng 2-3 tuần sau khi phát hành. Lịch phát hành dự
+            kiến như thông tin chi tiết bên dưới.</span
+          >
+        </p>
+      </div>
+    </div>
+
+    <div class="flex my-5 items-center">
+      <fa-icon
+        [icon]="icon.faPhoneVolume"
+        class="mr-4 text-xl text-black/30"
+      ></fa-icon>
+      <div class="text-black/60 text-sm">
+        <p>
+          <fa-icon [icon]="icon.faCheck" class="mr-2 text-black"></fa-icon
+          ><span>Giao hàng tận nơi</span>
+        </p>
+        <p>
+          <fa-icon [icon]="icon.faCheck" class="mr-2 text-black"></fa-icon
+          ><span>Miễn phí ship với các đơn hàng >1000K</span>
+        </p>
+        <p>
+          <fa-icon [icon]="icon.faCheck" class="mr-2 text-black"></fa-icon
+          ><span> Vui lòng kiểm tra sản phẩm khi nhận bưu kiện</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <h1 class="uppercase font-bold mb-4 mt-4">THÔNG TIN SẢN PHẨM</h1>
+  <p
+    *ngIf="dataRender.character_name != ' '"
+    class="font-medium my-1 text-black/80"
+  >
+    Nhân vật:
+    <span class="font-normal text-black/80">{{
+      dataRender.character_name
+    }}</span>
+  </p>
+  <p *ngIf="dataRender.series != ' '" class="font-medium my-1 text-black/80">
+    Series:
+    <span class="font-normal text-black/80">{{ dataRender.series }}</span>
+  </p>
+  <p
+    *ngIf="dataRender.manufacturer != ' '"
+    class="font-medium my-1 text-black/80"
+  >
+    Hãng:
+    <span class="font-normal text-black/80">{{ dataRender.manufacturer }}</span>
+  </p>
+  <p *ngIf="dataRender.size != ' '" class="font-medium my-1 text-black/80">
+    Kích thước:
+    <span class="font-normal text-black/80">{{ dataRender.size }}</span>
+  </p>
+  <p *ngIf="dataRender.scale != ' '" class="font-medium my-1 text-black/80">
+    Tỉ lệ:
+    <span class="font-normal text-black/80">{{ dataRender.scale }}</span>
+  </p>
+  <p *ngIf="dataRender.status != ' '" class="font-medium my-1 text-black/80">
+    Tình trạng:
+    <span class="font-normal text-black/80">{{ dataRender.status }}</span>
+  </p>
+  <p *ngIf="dataRender.reissue != ' '" class="font-medium my-1 text-black/80">
+    Phát hành:
+    <span class="font-normal text-black/80">{{ dataRender.reissue }}</span>
+  </p>
+  <p
+    *ngIf="dataRender.description != ' '"
+    class="font-medium my-1 text-black/80"
+  >
+    Giới thiệu:
+    <span class="font-normal text-black/80">{{ dataRender.description }}</span>
+  </p>
+</div>

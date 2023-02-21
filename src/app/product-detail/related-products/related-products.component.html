@@ -1,0 +1,56 @@
+<div class="relatedProductContainer">
+  <h1>Sản phẩm liên quan</h1>
+
+  <swiper [config]="config" class="mySwiper">
+    <ng-template *ngFor="let i of renderData" class="item" swiperSlide>
+      <a [routerLink]="getURL(i.name, i.ID)">
+        <div class="imgContainer">
+          <div class="flash">
+            <div></div>
+          </div>
+          <img [src]="convertToSafeSrc(i.thumb_url)" class="mainImg" />
+          <img [src]="convertToSafeSrc(i.subImg)" />
+        </div>
+
+        <div>
+          <p>{{ i.name }}</p>
+          <div *ngIf="i.discount; else elseBlock">
+            <p class="priceWithDiscount">
+              {{
+                getPriceWithDiscount(i.price, i.discount)
+                  | currency : "VND" : "symbol-narrow" : "1.0-3"
+              }}
+              <span>{{
+                i.price | currency : "VND" : "symbol-narrow" : "1.0-3"
+              }}</span>
+            </p>
+          </div>
+          <ng-template #elseBlock
+            ><div>
+              <p class="price">
+                {{ i.price | currency : "VND" : "symbol-narrow" : "1.0-3" }}
+              </p>
+            </div>
+          </ng-template>
+        </div>
+      </a>
+
+      <div>
+        <div>
+          <div>
+            <div title="Thêm vào giỏ" (click)="addToCart(i.ID)">
+              <fa-icon [icon]="icon.faCartShopping" class="icon"></fa-icon>
+            </div>
+            <div title="Mua hàng">
+              <fa-icon [icon]="icon.faBagShopping" class="icon"></fa-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="i.discount" class="discount">
+        <p>{{ i.discount }}%</p>
+      </div>
+    </ng-template>
+  </swiper>
+</div>

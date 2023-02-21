@@ -1,0 +1,127 @@
+<div class="flex items-center hover:cursor-pointer cart" title="Giỏ hàng">
+  <div class="relative">
+    <fa-icon
+      [icon]="icon.faShoppingCart"
+      class="text-xl px-3 cartIcon"
+      (click)="toggleCartHandle()"
+    ></fa-icon>
+    <p
+      class="absolute flex justify-center items-center -top-2 right-0 bg-red-500 text-xs text-white font-medium w-5 h-5 rounded-full"
+    >
+      {{ getTotalProduct() }}
+    </p>
+  </div>
+  <div class="headerText" (click)="toggleCartHandle()">
+    <p class="font-medium text-sm text-black/80">Giỏ hàng</p>
+  </div>
+
+  <div *ngIf="toggleLoginForm">
+    <div
+      class="site_overlay hover:cursor-default"
+      title=""
+      (click)="toggleCartHandle()"
+    ></div>
+
+    <div class="cartContainer rounded-sm hover:cursor-default" title="">
+      <div
+        class="absolute hidden hover:cursor-pointer text-2xl backBtn"
+        (click)="toggleCartHandle()"
+      >
+        <fa-icon [icon]="icon.faClose"></fa-icon>
+      </div>
+      <div class="w-4 h-4 bg-white absolute rotate-45 right-5 arrow"></div>
+      <div class="text-center">
+        <h1 class="uppercase text-lg">Giỏ hàng</h1>
+      </div>
+
+      <div *ngIf="!renderData.length; else elseBlock">
+        <div
+          class="w-full text-center border-t border-b border-black/10 py-7 mt-4"
+        >
+          <svg viewBox="0 0 81 70" class="stroke-red-500 w-12 h-12 mx-auto">
+            <g
+              transform="translate(0 2)"
+              stroke-width="4"
+              fill="none"
+              fill-rule="evenodd"
+            >
+              <circle stroke-linecap="square" cx="34" cy="60" r="6"></circle>
+              <circle stroke-linecap="square" cx="67" cy="60" r="6"></circle>
+              <path
+                d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"
+              ></path>
+            </g>
+          </svg>
+          <p class="text-black/50 mt-3 text-sm">Hiện chưa có sản phẩm!</p>
+        </div>
+      </div>
+      <ng-template #elseBlock>
+        <div
+          class="border-t border-b border-black/10 py-2 my-3 cartContentContainer"
+        >
+          <p class="float-right text-xs underline" (click)="clearAllCartItem()">
+            Xóa tất cả
+          </p>
+          <div *ngFor="let i of renderData" class="w-full mt-3 mb-3 py-2 flex">
+            <a [routerLink]="getURL(i.name, i.ID)" (click)="toggleCartHandle()">
+              <div class="imgContainer">
+                <p
+                  *ngIf="i.discount"
+                  class="absolute top-0 left-0 text-white text-xs font-medium bg-red-600 px-1"
+                >
+                  -{{ i.discount }}%
+                </p>
+                <img [src]="convertToSafeSrc(i.thumb_url)" />
+              </div>
+            </a>
+            <div class="detailContainer">
+              <a
+                [routerLink]="getURL(i.name, i.ID)"
+                (click)="toggleCartHandle()"
+                ><p class="font-medium">{{ i.name }}</p></a
+              >
+              <div class="flex items-center mt-3">
+                <p
+                  class="w-7 h-7 flex justify-center items-center text-black/70 bg-neutral-300/50 text-sm font-medium rounded-sm"
+                >
+                  {{ getTotalItem(i.ID) }}
+                </p>
+                <p class="text-black/70 ml-3">
+                  {{
+                    getPriceWithDiscount(i.price, i.discount)
+                      | currency : "VND" : "symbol-narrow" : "1.0-3"
+                  }}
+                </p>
+              </div>
+            </div>
+            <div class="pl-2 text-black/60" (click)="deleteFromCart(i.ID)">
+              <fa-icon
+                [icon]="icon.faClose"
+                class="hover:cursor-pointer"
+              ></fa-icon>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <div class="flex justify-between items-center mt-4 text-sm">
+        <h1 class="uppercase text-black/70">Tổng tiền:</h1>
+        <h1 class="text-red-600 text-lg font-medium">
+          {{ getTotalPrice() | currency : "VND" : "symbol-narrow" : "1.0-3" }}
+        </h1>
+      </div>
+      <div class="w-full flex justify-center mt-3">
+        <a
+          routerLink="/cart"
+          class="block w-7/12 text-center mt-3 text-white duration-300 hover:cursor-pointer hover:text-red-600"
+          (click)="toggleCartHandle()"
+        >
+          <p
+            class="bg-black w-full h-full py-2 uppercase text-medium-xs rounded-sm"
+          >
+            Đến giỏ hàng & Thanh toán
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

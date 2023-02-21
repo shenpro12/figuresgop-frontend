@@ -1,0 +1,52 @@
+<div
+  class="flex items-center py-4 relative headerItemContainer"
+  (mouseover)="showDropBox_mouseOver()"
+  (mouseout)="hideDropBox_mouseOut()"
+  (click)="toggleDropBoxhandel()"
+>
+  <a
+    *ngIf="slug; else elseBlock"
+    [routerLink]="getLink(slug)"
+    (click)="chooseItemHandler()"
+    ><p class="title">{{ title }}</p></a
+  >
+  <ng-template #elseBlock
+    ><p class="title">{{ title }}</p></ng-template
+  >
+  <fa-icon
+    *ngIf="dropBox"
+    [icon]="faAngleDown"
+    class="text-xs ml-1 duration-200 dropBoxIcon"
+    [ngClass]="iconRotate"
+  ></fa-icon>
+  <div
+    class="bg-black absolute bottom-0 duration-500 rounded-full h-1-custom headerItemBorder"
+    [ngClass]="border"
+  ></div>
+</div>
+<ul
+  *ngIf="dropBox"
+  class="absolute shadow-xl duration-300 border-t border-neutral-200/30 bg-white dropBox_tablet"
+  [ngClass]="toggleDropBox"
+  (mouseover)="showDropBox_mouseOver()"
+  (mouseout)="hideDropBox_mouseOut()"
+>
+  <li
+    class="py-3 px-6 border-b border-black/10 text-black hover:text-black duration-200 items-center hidden gobackBtn"
+    (click)="toggleDropBoxhandel()"
+  >
+    <fa-icon [icon]="faAngleLeft" class="text-sm"></fa-icon>
+    <p class="uppercase ml-2 font-medium">Quay về</p>
+  </li>
+  <a
+    *ngFor="let item of dropBoxItem"
+    [routerLink]="getLink(item.slug)"
+    (click)="chooseItemHandler()"
+  >
+    <li
+      class="py-3 px-6 border-b border-black/10 text-neutral-500 hover:text-black text-sm duration-200"
+    >
+      {{ item.title }}
+    </li>
+  </a>
+</ul>

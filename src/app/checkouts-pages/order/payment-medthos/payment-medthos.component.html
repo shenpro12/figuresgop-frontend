@@ -1,0 +1,25 @@
+<h1 class="font-bold text-lg my-1">Phương thức thanh toán</h1>
+<div class="border-b border-l border-r border-black/20 w-full mt-6 mb-1">
+  <div class="border-t border-black/20" *ngFor="let item of data">
+    <div
+      class="flex items-center p-5 hover:cursor-pointer"
+      (click)="onClick(item.value)"
+    >
+      <input
+        type="checkbox"
+        class="w-5 h-5 hover:cursor-pointer"
+        [value]="item.value"
+        [checked]="item.value == checked"
+        (change)="onInputChange($event)"
+      />
+      <img src="../../../../assets/other.svg" class="mx-3" />
+      <p class="text-sm text-black/70">{{ item.header }}</p>
+    </div>
+    <div
+      class="border-t border-black/20 p-5 text-black/60 text-sm text-center bg-stone-300/20"
+      [ngClass]="item.value == checked ? '' : 'hidden'"
+    >
+      <p *ngFor="let i of item.body" class="my-2">{{ i }}</p>
+    </div>
+  </div>
+</div>

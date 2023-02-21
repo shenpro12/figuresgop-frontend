@@ -1,0 +1,169 @@
+<div
+  class="flex mx-5 items-center hover:cursor-pointer user relative"
+  title="Tài khoản"
+>
+  <div>
+    <fa-icon
+      *ngIf="!loginInfo.status; else avatarBlock"
+      [icon]="faUser"
+      class="text-xl px-3 userIcon"
+      (click)="toggleLoginFormHandle()"
+    ></fa-icon>
+    <ng-template #avatarBlock>
+      <div class="w-6 h-6 rounded-full mr-1" (click)="toggleLoginFormHandle()">
+        <img [src]="loginInfo.userProfile.avatar" />
+      </div>
+    </ng-template>
+  </div>
+  <div class="headerText" (click)="toggleLoginFormHandle()">
+    <p *ngIf="!loginInfo.status" class="text-sm text-black/60">
+      Đăng nhập / Đăng ký
+    </p>
+    <div class="flex items-center">
+      <p class="font-medium text-sm text-black/80 mr-1">Tài khoản của tôi</p>
+      <fa-icon [icon]="faAngleDown" class="text-sm"></fa-icon>
+    </div>
+  </div>
+
+  <div *ngIf="toggleLoginForm">
+    <div
+      class="site_overlay hover:cursor-default"
+      title=""
+      (click)="toggleLoginFormHandle()"
+    ></div>
+
+    <div class="loginPageContainer rounded-sm hover:cursor-default" title="">
+      <div
+        class="absolute hidden hover:cursor-pointer text-2xl backBtn"
+        (click)="toggleLoginFormHandle()"
+      >
+        <fa-icon [icon]="faClose"></fa-icon>
+      </div>
+      <div class="w-4 h-4 bg-white absolute rotate-45 right-5 arrow"></div>
+
+      <div *ngIf="!loginInfo.status; else elseBlock">
+        <div class="text-center">
+          <h1 class="uppercase text-lg">Đăng nhập tài khoản</h1>
+          <p class="text-sm">Nhập email và mật khẩu của bạn:</p>
+        </div>
+        <div class="border-t mt-3 pt-5 border-black/10">
+          <p *ngIf="status" class="mb-2 text-sm text-red-500">*{{ status }}</p>
+          <div class="flex flex-col inputContainer">
+            <div
+              class="w-full p-2 border border-black/20 rounded-sm focus-within:border-sky-500/80 duration-200 mb-3"
+            >
+              <label
+                for="account_input"
+                class="absolute duration-200 text-sm font-medium text-neutral-600"
+                >Email</label
+              >
+              <input
+                class="text-xs w-full outline-none border-none text-blue-900 bg-transparent"
+                id="account_input"
+                [(ngModel)]="userName"
+                (focus)="activeInput($event)"
+                (blur)="eliminateInput($event)"
+              />
+            </div>
+            <div
+              class="w-full p-2 border border-black/30 rounded-sm focus-within:border-sky-500/80 duration-200"
+            >
+              <label
+                for="password_input"
+                class="absolute duration-200 text-sm font-medium text-neutral-600"
+                >Mật khẩu</label
+              >
+              <input
+                type="password"
+                class="text-xs w-full outline-none border-none text-blue-900 bg-transparent"
+                id="password_input"
+                [(ngModel)]="password"
+                (focus)="activeInput($event)"
+                (blur)="eliminateInput($event)"
+              />
+            </div>
+          </div>
+
+          <div class="mt-2">
+            <p class="text-neutral-600/70 text-medium-xs text-left">
+              This site is protected by reCAPTCHA and the Google
+              <a
+                class="text-sky-600"
+                target="_blank"
+                href="https://policies.google.com/privacy"
+                >Privacy Policy</a
+              >
+              and
+              <a
+                class="text-sky-600"
+                target="_blank"
+                href="https://policies.google.com/terms"
+                >Terms of Service</a
+              >
+              apply.
+            </p>
+          </div>
+
+          <div
+            class="bg-black hover:bg-red-600 duration-300 h-10 my-5 p-0.5 rounded-sm hover:cursor-pointer"
+            (click)="login()"
+          >
+            <p
+              class="uppercase text-white text-sm border-t border-l border-red-600 w-full h-full flex justify-center items-center"
+            >
+              Đăng nhập
+            </p>
+          </div>
+
+          <div class="text-medium-xs text-neutral-600/70">
+            <p>
+              Khách hàng mới?
+              <a
+                routerLink="/account/register"
+                (click)="toggleLoginFormHandle()"
+                ><span class="text-red-400">Tạo tài khoản</span></a
+              >
+            </p>
+            <p>
+              Quên mật khẩu?
+              <a
+                routerLink="/account/resetpassword"
+                (click)="toggleLoginFormHandle()"
+              >
+                <span class="text-red-400">Khôi phục mật khẩu</span></a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #elseBlock>
+        <div>
+          <div class="text-center mb-3">
+            <h1 class="uppercase text-lg">Thông tin tài khoản</h1>
+          </div>
+          <p
+            class="pt-5 pb-3 font-medium w-full text-center text-xl border-t border-black/10"
+          >
+            {{ loginInfo.userProfile.name || loginInfo.userProfile.userName }}
+          </p>
+          <ul>
+            <a routerLink="/account/profile" (click)="toggleLoginFormHandle()"
+              ><li
+                class="list-disc list-inside my-1 hover:cursor-pointer hover:text-red-600 duration-300"
+              >
+                Tài khoản của tôi
+              </li></a
+            >
+            <li
+              class="list-disc list-inside my-1 hover:cursor-pointer hover:text-red-600 duration-300"
+              (click)="logOut()"
+            >
+              Đăng xuất
+            </li>
+          </ul>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

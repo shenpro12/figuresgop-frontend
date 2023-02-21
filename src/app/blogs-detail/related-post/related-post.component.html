@@ -1,0 +1,23 @@
+<div *ngIf="renderData.length">
+  <h1>Bài viết liên quan</h1>
+  <div class="container">
+    <swiper [config]="config" class="swiper">
+      <ng-template *ngFor="let i of renderData" swiperSlide>
+        <div class="item">
+          <div>
+            <a routerLink="/blogs/{{ blogType }}/{{ convertName(i) }}">
+              <div class="description">
+                <p>{{ i.description }}</p>
+              </div></a
+            >
+            <img src="{{ i.thumb_url }}" />
+          </div>
+
+          <a routerLink="/blogs/{{ blogType }}/{{ convertName(i) }}"
+            ><p>{{ i.title }}</p></a
+          >
+        </div>
+      </ng-template>
+    </swiper>
+  </div>
+</div>

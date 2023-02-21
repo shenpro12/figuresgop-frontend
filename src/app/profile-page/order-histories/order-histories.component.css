@@ -1,0 +1,80 @@
+.contentContainer {
+  width: 100%;
+  overflow-x: auto;
+  min-height: 704px;
+  padding: 10px 0px;
+  position: relative;
+}
+table {
+  border: 8px solid rgb(202, 232, 251);
+  margin: 0px auto;
+  min-width: 100%;
+  font-size: 14px;
+  transition: 1s ease-in-out;
+}
+.tableRow:hover {
+  background-color: rgba(198, 255, 255, 0.534);
+  cursor: pointer;
+}
+tr > th {
+  padding: 10px 20px;
+  border-bottom: 1px solid rgb(202, 232, 251);
+  border-right: 1px solid rgb(202, 232, 251);
+}
+tr > td {
+  padding: 10px 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(202, 232, 251, 0.6);
+  border-right: 1px solid rgba(202, 232, 251, 0.6);
+}
+.contentContainer::-webkit-scrollbar,
+.productListContainer::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+  background-color: rgba(204, 204, 204, 0.427);
+}
+.contentContainer::-webkit-scrollbar-thumb,
+.productListContainer::-webkit-scrollbar-thumb {
+  background-color: rgb(253, 114, 114);
+  border-radius: 5px;
+}
+.orderDetailContainer {
+  height: 704px;
+  opacity: 0;
+  width: 100%;
+  background-color: white;
+  position: absolute;
+  top: 0px;
+  left: -100%;
+  transition: 0.3s ease-in-out;
+  padding: 20px 0px;
+}
+.orderDetail_show {
+  left: 0% !important;
+  opacity: 1 !important;
+}
+.overflowX_hidden {
+  overflow-x: hidden !important;
+}
+.productListContainer {
+  width: 100%;
+  margin: 0px auto;
+  flex: 1;
+  overflow-y: auto;
+}
+.productTable {
+  border: none;
+}
+.productTable > tr > th {
+  border-right: none;
+  border-bottom: 2px solid rgb(220, 220, 220);
+}
+.productTable > tr > td {
+  border-right: none;
+  border-bottom: 1px solid rgba(222, 222, 222, 0.6);
+  border-right: none;
+}
+.name {
+  max-width: 400px;
+  word-break: break-all;
+}

@@ -1,0 +1,6 @@
+input:checked ~ label {
+  align-items: flex-start;
+  font-size: 12px;
+  color: rgb(125, 125, 255);
+  z-index: -1;
+}

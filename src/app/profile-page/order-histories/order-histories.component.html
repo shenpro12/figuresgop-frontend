@@ -1,0 +1,226 @@
+<h1 class="text-lg font-semibold pb-2 border-b border-black/10">
+  Danh sách đơn hàng mới nhất
+</h1>
+<div *ngIf="loading" class="relative w-full h-32">
+  <app-loading></app-loading>
+</div>
+<div
+  *ngIf="orderData.length && !loading"
+  class="contentContainer"
+  id="contentContainer"
+  [ngClass]="toggleOrderDetail ? 'overflowX_hidden' : ''"
+>
+  <table class="w-max">
+    <tr class="bg-sky-100/50">
+      <th>Mã đơn hàng</th>
+      <th>Ngày đặt</th>
+      <th>Thành tiền</th>
+      <th>Trạng thái</th>
+      <th>Ghi chú</th>
+    </tr>
+    <tr
+      *ngFor="let i of renderData"
+      class="tableRow duration-200"
+      title="Chi tiết"
+      (click)="toggleOrderDetailHandler(true, i.ID)"
+    >
+      <td class="text-red-500">#{{ i.ID }}</td>
+      <td class="text-black/70">{{ getDate(i.createdAt) }}</td>
+      <td class="text-red-500">
+        {{ i.totalPrice | currency : "VND" : "symbol-narrow" : "1.0-3" }}
+      </td>
+      <td
+        [ngClass]="
+          i.status == 'pending'
+            ? 'text-yellow-500'
+            : i.status == 'processed'
+            ? 'text-lime-500'
+            : i.status == 'reject'
+            ? 'text-red-500'
+            : ''
+        "
+      >
+        {{
+          i.status == "pending"
+            ? "Đang xử lý"
+            : i.status == "processed"
+            ? "Đã xử lý"
+            : i.status == "reject"
+            ? "Từ chối"
+            : ""
+        }}
+      </td>
+      <td class="text-black/70">{{ i.rejectInfo ? i.rejectInfo : "—" }}</td>
+    </tr>
+  </table>
+
+  <div
+    class="orderDetailContainer"
+    [ngClass]="toggleOrderDetail ? 'orderDetail_show' : ''"
+  >
+    <div *ngIf="orderDetail" class="w-full h-full flex flex-col">
+      <div class="flex items-center">
+        <div
+          class="w-4 text-center hover:cursor-pointer"
+          (click)="toggleOrderDetailHandler(false)"
+        >
+          <fa-icon [icon]="icon.faAngleLeft"></fa-icon>
+        </div>
+        <p class="flex-1 text-center mr-4 text-xl">
+          Chi tiết đơn hàng
+          <span class="text-black/30 font-semibold">#{{ orderDetail.ID }}</span>
+        </p>
+      </div>
+
+      <div class="flex-1 flex flex-col w-full mt-7 px-5 overflow-y-auto">
+        <div>
+          <h1 class="font-semibold mt-1">1. Thông tin cá nhân</h1>
+          <p class="text-black/70">Họ tên: {{ orderDetail.name }}</p>
+          <p class="text-black/70">Số điện thoại: {{ orderDetail.phone }}</p>
+          <p class="text-black/70">Địa chỉ: {{ orderDetail.location }}</p>
+          <p class="text-black/70">Phường/xã: {{ orderDetail.ward }}</p>
+          <p class="text-black/70">Quận/huyện: {{ orderDetail.district }}</p>
+          <p class="text-black/70">Tỉnh/thành: {{ orderDetail.province }}</p>
+          <h1 class="font-semibold mt-1">2. Phương thức vận chuyển</h1>
+          <p class="text-black/70">
+            {{
+              (orderDetail.shippingMethod == "DELIVERY" &&
+                "Giao hàng tận nơi") ||
+                (orderDetail.shippingMethod == "DIRECT" && "Lấy tại cửa hàng")
+            }}
+          </p>
+          <h1 class="font-semibold mt-1">3. Phương thức thanh toán</h1>
+          <p class="text-black/70">
+            {{
+              (orderDetail.paymentMethod == "ATM" &&
+                "Chuyển khoản đến Figure Shop") ||
+                (orderDetail.paymentMethod == "WALLET" &&
+                  "Chuyển tiền đến ví điện tử") ||
+                (orderDetail.paymentMethod == "DIRECT" &&
+                  "Đến trực tiếp Japan Figure để cọc / thanh toán") ||
+                (orderDetail.paymentMethod == "COD" &&
+                  "Thanh toán khi nhận hàng")
+            }}
+          </p>
+          <p class="mt-5 text-black/70 text-right">
+            Thành tiền:
+            <span class="text-xl text-red-600 font-semibold">{{
+              orderDetail.totalPrice
+                | currency : "VND" : "symbol-narrow" : "1.0-3"
+            }}</span>
+          </p>
+          <h1 class="font-semibold my-3">4. Chi tiết sản phẩm</h1>
+        </div>
+
+        <div class="productListContainer">
+          <div *ngIf="orderProductLoading" class="relative w-full h-32 my-auto">
+            <app-loading></app-loading>
+          </div>
+
+          <div *ngIf="!orderProductLoading">
+            <div *ngIf="!orderProductData.length">
+              <p class="text-black/60 text-sm">Không tìm thấy sản phẩm!</p>
+            </div>
+            <div *ngIf="orderProductData.length">
+              <table class="productTable w-max">
+                <tr>
+                  <th>Sản phẩm</th>
+                  <th>Đơn giá</th>
+                  <th>Số lượng</th>
+                  <th>Thành tiền</th>
+                </tr>
+                <tr *ngFor="let j of orderProductData">
+                  <td class="flex items-center">
+                    <a [routerLink]="getURL(j.name, j.ID)">
+                      <img [src]="j.thumb_url" class="w-14 h-20 object-cover"
+                    /></a>
+                    <a [routerLink]="getURL(j.name, j.ID)"
+                      ><p
+                        class="text-left ml-2 hover:text-red-500 duration-200 name"
+                      >
+                        {{ j.name }}
+                      </p></a
+                    >
+                  </td>
+                  <td class="text-red-600">
+                    {{
+                      j.price * ((100 - j.discount) / 100)
+                        | currency : "VND" : "symbol-narrow" : "1.0-3"
+                    }}
+                  </td>
+                  <td>{{ j.total }}</td>
+                  <td class="text-red-600">
+                    {{
+                      j.price * ((100 - j.discount) / 100) * j.total
+                        | currency : "VND" : "symbol-narrow" : "1.0-3"
+                    }}
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="maxPage > 1"
+  class="w-full flex justify-between mt-3 px-3 text-black/60"
+>
+  <p class="text-sm">{{ currentPage }}/{{ maxPage }}</p>
+  <div class="flex items-center">
+    <div *ngIf="currentPage > 1" class="px-1" (click)="changePage(1)">
+      <fa-icon
+        class="mx-1 hover:cursor-pointer hover:text-black duration-150"
+        [icon]="icon.faAnglesLeft"
+      ></fa-icon>
+    </div>
+    <div
+      *ngIf="currentPage > 1"
+      class="px-1"
+      (click)="currentPage - 1 > 0 && changePage(currentPage - 1)"
+    >
+      <fa-icon
+        class="mx-1 hover:cursor-pointer hover:text-black duration-150"
+        [icon]="icon.faAngleLeft"
+      ></fa-icon>
+    </div>
+
+    <p
+      *ngFor="let i of controlItem"
+      [ngClass]="
+        i == currentPage ? 'bg-sky-500 text-white' : 'hover:text-black'
+      "
+      class="mx-2 text-xs w-5 h-5 font-semibold hover:cursor-pointer rounded-full flex justify-center items-center"
+      (click)="changePage(i)"
+    >
+      {{ i }}
+    </p>
+
+    <div
+      *ngIf="currentPage < maxPage"
+      class="px-1"
+      (click)="currentPage + 1 <= maxPage && changePage(currentPage + 1)"
+    >
+      <fa-icon
+        class="mx-1 hover:cursor-pointer hover:text-black duration-150"
+        [icon]="icon.faAngleRight"
+      ></fa-icon>
+    </div>
+    <div
+      *ngIf="currentPage < maxPage"
+      class="px-1"
+      (click)="changePage(maxPage)"
+    >
+      <fa-icon
+        class="mx-1 hover:cursor-pointer hover:text-black duration-150"
+        [icon]="icon.faAnglesRight"
+      ></fa-icon>
+    </div>
+  </div>
+</div>
+<p *ngIf="!orderData.length && !loading" class="text-black/60 mt-5">
+  Bạn chưa đặt mua sản phẩm nào!
+</p>

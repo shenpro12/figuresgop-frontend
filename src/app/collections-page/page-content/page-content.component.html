@@ -1,0 +1,79 @@
+<p
+  *ngIf="!productList.length; else elseBlock"
+  class="w-full text-center my-7 font-medium text-black/70"
+>
+  Không tìm thấy!
+</p>
+<ng-template #elseBlock>
+  <div
+    class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 pageContentContainer"
+  >
+    <div
+      *ngFor="let i of dataRender"
+      class="overflow-hidden hover:cursor-pointer relative"
+    >
+      <a [routerLink]="getURL(i.name, i.ID)">
+        <div
+          class="w-full h-4/5 flex items-center overflow-hidden relative imgContainer"
+        >
+          <div class="w-full h-full flex justify-center absolute flash">
+            <div class="h-full w-full"></div>
+          </div>
+          <img [src]="convertToSafeSrc(i.thumb_url)" class="mainImg" />
+          <img [src]="convertToSafeSrc(i.subImg)" />
+        </div>
+
+        <div class="absolute bottom-0 w-full bg-white/60 pb-4 text-center">
+          <p class="truncate w-10/12 font-medium mx-auto">{{ i.name }}</p>
+          <div *ngIf="i.discount; else elseBlock">
+            <p class="text-red-500 font-medium break-words">
+              {{
+                getPriceWithDiscount(i.price, i.discount)
+                  | currency : "VND" : "symbol-narrow" : "1.0-3"
+              }}
+              <span class="text-black/40 font-medium line-through">{{
+                i.price | currency : "VND" : "symbol-narrow" : "1.0-3"
+              }}</span>
+            </p>
+          </div>
+          <ng-template #elseBlock
+            ><div>
+              <p class="text-red-500 font-medium">
+                {{ i.price | currency : "VND" : "symbol-narrow" : "1.0-3" }}
+              </p>
+            </div>
+          </ng-template>
+        </div>
+      </a>
+      <div class="h-full w-full top-28 left-0 right-0 flex items-end absolute">
+        <div class="w-full flex flex-col items-center justify-end">
+          <div class="w-10/12 flex h-8 mt-3 mb-2 rounded overflow-hidden">
+            <div
+              class="w-9/12 flex justify-center items-center bg-black"
+              title="Thêm vào giỏ"
+              (click)="addToCart(i.ID)"
+            >
+              <fa-icon
+                [icon]="icon.faCartShopping"
+                class="text-white"
+              ></fa-icon>
+            </div>
+            <div
+              class="w-3/12 flex justify-center items-center bg-red-600"
+              title="Mua hàng"
+            >
+              <fa-icon [icon]="icon.faBagShopping" class="text-white"></fa-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="i.discount"
+        class="bg-red-600 px-2 py-1 absolute top-1 right-1 rounded-sm flex justify-center items-center"
+      >
+        <p class="text-white text-xs">{{ i.discount }}%</p>
+      </div>
+    </div>
+  </div>
+</ng-template>

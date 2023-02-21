@@ -1,0 +1,13 @@
+<app-loading
+  *ngIf="
+    loading.initProduct || loading.initLogin || loading.initBlogs;
+    else elseBlock
+  "
+></app-loading>
+<ng-template #elseBlock>
+  <app-site-loading></app-site-loading>
+
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</ng-template>

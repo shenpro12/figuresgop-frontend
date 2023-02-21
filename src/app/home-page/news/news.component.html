@@ -1,0 +1,24 @@
+<div class="newsContainer">
+  <div class="headerContainer">
+    <h1>Tin tức</h1>
+    <p>Tin tức mới nhất</p>
+  </div>
+  <swiper [config]="config" class="swiper">
+    <ng-template *ngFor="let i of renderData" swiperSlide>
+      <div class="item">
+        <div>
+          <a routerLink="/blogs/news/{{ convertName(i) }}">
+            <div class="description">
+              <p>{{ i.description }}</p>
+            </div></a
+          >
+          <img src="{{ i.thumb_url }}" />
+        </div>
+
+        <a routerLink="/blogs/news/{{ convertName(i) }}"
+          ><p>{{ i.title }}</p></a
+        >
+      </div>
+    </ng-template>
+  </swiper>
+</div>

@@ -1,0 +1,55 @@
+.dropBox_hidden {
+  z-index: -1;
+  opacity: 0;
+  margin-top: 40px;
+  pointer-events: none;
+}
+.dropBox_show {
+  z-index: 50;
+  opacity: 1;
+  margin-top: 0px;
+}
+@media (max-width: 990px) {
+  .headerItemBorder {
+    display: none;
+  }
+  .headerItemContainer {
+    border-bottom: 1px solid #eeeeee;
+    text-transform: uppercase;
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    justify-content: space-between;
+  }
+  .headerItemContainer:hover {
+    background-color: #eaeaea47;
+  }
+  .title {
+    margin-left: 10px;
+  }
+  .dropBoxIcon {
+    transform: rotate(270deg) !important;
+  }
+  .dropBox_tablet {
+    z-index: 10;
+    margin-top: 0px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    transition: 0.4s ease;
+    padding: 0px 20px;
+  }
+  .dropBox_tablet_show {
+    opacity: 1;
+    margin-left: 0% !important;
+  }
+  .dropBox_tablet_hidden {
+    opacity: 0;
+    margin-left: 100% !important;
+  }
+  .gobackBtn {
+    display: flex;
+  }
+}

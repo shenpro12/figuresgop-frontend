@@ -1,0 +1,35 @@
+<div class="pagesContainer">
+  <app-loading *ngIf="loading" class="loading"></app-loading>
+
+  <div *ngIf="!loading" class="content">
+    <h1 *ngIf="title">{{ title }}</h1>
+    <p *ngIf="description">{{ description }}</p>
+    <div [innerHTML]="post"></div>
+  </div>
+
+  <div class="sideBar">
+    <div class="productListContainer">
+      <p>Danh sách sản phẩm</p>
+      <div (click)="navigate('/collections/all')">
+        <img
+          src="https://res.cloudinary.com/duhoyt34t/image/upload/v1676351223/productBanner_smt0nk.png"
+        />
+      </div>
+    </div>
+    <div class="figmaListContainer">
+      <p>Figma Site</p>
+      <div (click)="navigate('/collections/action-figure')">
+        <img
+          src="https://res.cloudinary.com/duhoyt34t/image/upload/v1676352965/figma_listing-0e2ed2b07f87c199f04d32f9d3170c84_olpadd.jpg"
+        />
+      </div>
+    </div>
+    <div class="figmaListContainer">
+      <div (click)="navigate('/collections/order')">
+        <img
+          src="https://res.cloudinary.com/duhoyt34t/image/upload/v1676360837/page_banner_image_j9tdjz.jpg"
+        />
+      </div>
+    </div>
+  </div>
+</div>

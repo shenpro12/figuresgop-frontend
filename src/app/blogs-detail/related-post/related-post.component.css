@@ -1,0 +1,101 @@
+@import "~swiper/css";
+@import "~swiper/css/navigation";
+.container {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px 0px 0px 0px;
+}
+h1 {
+  margin: 0px;
+  margin-top: 50px;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+.item {
+  background-color: white;
+}
+.item > div > img {
+  width: 100%;
+  object-fit: cover;
+}
+.item > a > p {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 10px 0px;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  transition: 0.3s ease;
+}
+.item > a > p:hover {
+  color: rgb(255, 66, 66);
+}
+.item > div {
+  position: relative;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-family: "Font Awesome\ 6 free";
+  font-size: 16px;
+  font-weight: 700;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.315);
+}
+.swiper-button-next::after {
+  content: "\f105";
+}
+.swiper-button-prev::after {
+  content: "\f104";
+}
+.swiper-button-disabled {
+  display: none !important;
+}
+.description {
+  position: absolute;
+  top: 0;
+  bottom: 2%;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  transition: 0.5s ease;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.item:hover > div > a > .description {
+  background-color: rgba(33, 33, 33, 0.737);
+}
+.description > p {
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  font-size: 14px;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  margin: 0px;
+  color: white;
+  transition: 0.5s ease;
+}
+.item:hover > div > a > .description > p {
+  top: 10%;
+  opacity: 1;
+}

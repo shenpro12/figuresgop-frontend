@@ -1,0 +1,45 @@
+<h1 class="w-full text-center mb-4 pt-5 text-2xl font-semibold">
+  Tài khoản của bạn
+</h1>
+<div class="w-14 h-1 bg-black/60 mx-auto"></div>
+
+<div class="profileContainer">
+  <div class="sideBar">
+    <h1 class="text-lg font-semibold">Tài khoản</h1>
+    <ul class="mt-3 text-sm text-black/70 inline-block sidaBarList">
+      <li
+        class="my-2 hover:cursor-pointer hover:text-black duration-300"
+        [ngClass]="
+          activateContent == 'profile' ? 'text-red-500 hover:text-red-500' : ''
+        "
+        (click)="activateContent = 'profile'"
+      >
+        <p>Thông tin tài khoản</p>
+      </li>
+      <li
+        class="my-2 hover:cursor-pointer hover:text-black duration-300"
+        [ngClass]="
+          activateContent == 'order' ? 'text-red-500 hover:text-red-500' : ''
+        "
+        (click)="activateContent = 'order'"
+      >
+        <p>Lịch sử đặt hàng</p>
+      </li>
+      <li
+        class="mb-2 mt-5 hover:cursor-pointer hover:text-red-500 duration-300"
+        (click)="logOut()"
+      >
+        <p>Đăng xuất</p>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="activateContent == 'profile'" class="profileContent">
+    <profile [profile]="loginInfo.userProfile"></profile>
+  </div>
+  <div
+    *ngIf="activateContent == 'order'"
+    class="profileContent overflow-hidden"
+  >
+    <order-histories></order-histories>
+  </div>
+</div>

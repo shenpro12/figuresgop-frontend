@@ -1,0 +1,68 @@
+<img
+  src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940885/collection_banner_owrpoy.webp"
+  class="banner"
+/>
+<div class="blogsContainer">
+  <div class="content">
+    <h1>
+      {{
+        blogType == "news"
+          ? "Tin tức"
+          : blogType == "guide"
+          ? "Hướng dẫn"
+          : blogType == "sale"
+          ? "Ưu đãi"
+          : ""
+      }}
+    </h1>
+    <div *ngFor="let i of renderData" class="itemContainer">
+      <div class="itemImg">
+        <a routerLink="/blogs/{{ blogType }}/{{ convertName(i) }}"
+          ><div></div
+        ></a>
+        <img [src]="i.thumb_url" />
+      </div>
+      <div class="itemContent">
+        <a routerLink="/blogs/{{ blogType }}/{{ convertName(i) }}">
+          <p class="title">{{ i.title }}</p></a
+        >
+        <p class="description">{{ i.description }}</p>
+        <p class="time">
+          <span>bởi: admin</span><span>{{ getTime(i.createdAt) }}</span>
+        </p>
+      </div>
+    </div>
+    <page-control
+      [totalItemPerView]="totalItemPerView"
+      [currentPage]="currentPage.number"
+      [totalItem]="blogsData.length"
+      (onChangePageNumber)="changePageNumber($event)"
+    ></page-control>
+  </div>
+
+  <div class="sideBar">
+    <div class="productListContainer">
+      <p>Danh sách sản phẩm</p>
+      <div (click)="navigate('/collections/all')">
+        <img
+          src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940887/productBanner_nto2fy.png"
+        />
+      </div>
+    </div>
+    <div class="figmaListContainer">
+      <p>Figma Site</p>
+      <div (click)="navigate('/collections/action-figure')">
+        <img
+          src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940885/figma_listing-0e2ed2b07f87c199f04d32f9d3170c84_yjvu30.jpg"
+        />
+      </div>
+    </div>
+    <div class="figmaListContainer">
+      <div (click)="navigate('/collections/order')">
+        <img
+          src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940887/page_banner_image_qky93u.jpg"
+        />
+      </div>
+    </div>
+  </div>
+</div>

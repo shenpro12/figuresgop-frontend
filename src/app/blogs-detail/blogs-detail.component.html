@@ -1,0 +1,39 @@
+<div class="blogsContainer">
+  <app-loading *ngIf="loading" class="loading"></app-loading>
+
+  <div *ngIf="!loading" class="content">
+    <h1 *ngIf="title">{{ title }}</h1>
+    <p>{{ convertToDateString() }}</p>
+    <div [innerHTML]="blogContent"></div>
+    <related-post
+      [blogType]="blogType"
+      [currentPost]="currentPost"
+    ></related-post>
+  </div>
+
+  <div class="sideBar">
+    <div class="productListContainer">
+      <p>Danh sách sản phẩm</p>
+      <div (click)="navigate('/collections/all')">
+        <img
+          src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940887/productBanner_nto2fy.png"
+        />
+      </div>
+    </div>
+    <div class="figmaListContainer">
+      <p>Figma Site</p>
+      <div (click)="navigate('/collections/action-figure')">
+        <img
+          src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940885/figma_listing-0e2ed2b07f87c199f04d32f9d3170c84_yjvu30.jpg"
+        />
+      </div>
+    </div>
+    <div class="figmaListContainer">
+      <div (click)="navigate('/collections/order')">
+        <img
+          src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940887/page_banner_image_qky93u.jpg"
+        />
+      </div>
+    </div>
+  </div>
+</div>

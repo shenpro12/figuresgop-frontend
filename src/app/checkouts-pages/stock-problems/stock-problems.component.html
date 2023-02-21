@@ -1,0 +1,69 @@
+<div class="w-full flex flex-col items-center pt-10 px-12">
+  <h1 class="font-medium text-3xl">Figure Shop</h1>
+  <img
+    src="https://res.cloudinary.com/drdnqwdzd/image/upload/v1676940886/inventory_issues_ruhqbc.webp"
+    class="w-44 h-44"
+  />
+  <h1 class="font-medium text-3xl mb-3">Vấn đề tồn kho</h1>
+  <p class="text-black/60 text-center">
+    Một số sản phẩm trong giỏ hàng của bạn đã không còn hợp lệ trong quá trình
+    thanh toán.
+  </p>
+</div>
+<table mat-table [dataSource]="renderData" class="text-sm">
+  <ng-container matColumnDef="product">
+    <th mat-header-cell *matHeaderCellDef>Sản phẩm</th>
+    <td mat-cell *matCellDef="let element">
+      <div class="flex">
+        <img src="{{ element.product.thumb_url }}" class="img" />
+        <p class="mt-11 ml-5 break-all text-black/60">
+          {{ element.product.name }}
+        </p>
+      </div>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="total">
+    <th class="column" mat-header-cell *matHeaderCellDef>Số lượng</th>
+    <td mat-cell *matCellDef="let element">
+      <div class="flex justify-center">
+        <p class="text-black/50">{{ element.total }}</p>
+        <fa-icon [icon]="icon.faRightLong" class="mx-2 text-black/50"></fa-icon>
+        <p class="text-lime-600">{{ element.total - element.exceeding }}</p>
+      </div>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="price">
+    <th class="column" mat-header-cell *matHeaderCellDef>Giá</th>
+    <td mat-cell *matCellDef="let element">
+      <p class="text-red-600 text-center">
+        {{ element.price | currency : "VND" : "symbol-narrow" : "1.0-3" }}
+      </p>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="status">
+    <th class="column" mat-header-cell *matHeaderCellDef>Trạng thái</th>
+    <td mat-cell *matCellDef="let element">
+      <div class="flex justify-center text-yellow-500">
+        <fa-icon [icon]="icon.faCircleHalfStroke" class="-rotate-90"></fa-icon>
+        <p class="text-center ml-1">{{ element.status }}</p>
+      </div>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<div class="controll flex justify-between items-center">
+  <a class="flex text-sm text-sky-500 items-center" routerLink="/cart">
+    <fa-icon [icon]="icon.faAnglesLeft"></fa-icon>
+    <p class="ml-2">Quay lại giỏ hàng</p>
+  </a>
+  <div>
+    <p
+      class="py-2 px-4 bg-sky-500 text-white text-sm rounded hover:cursor-pointer hover:bg-sky-600"
+      (click)="updateCartHandler()"
+    >
+      Tiếp tục
+    </p>
+  </div>
+</div>

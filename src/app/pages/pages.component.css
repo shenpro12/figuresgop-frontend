@@ -1,0 +1,106 @@
+.pagesContainer {
+  width: 95%;
+  margin: 0px auto 70px auto;
+  display: flex;
+  flex-direction: column;
+}
+.content,
+.sideBar,
+.loading {
+  width: 100%;
+  height: max-content;
+  background-color: white;
+}
+.content {
+  margin-bottom: 25px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+.content > h1 {
+  margin-bottom: 50px;
+  font-size: 26px;
+}
+.loading {
+  min-height: 300px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+img {
+  max-width: 100%;
+}
+@media (min-width: 768px) {
+  .pagesContainer {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .pagesContainer {
+    width: 970px;
+    flex-direction: row;
+  }
+  .content,
+  .loading {
+    width: 75%;
+    margin-right: 30px;
+  }
+  .content {
+    padding: 15px 25px;
+  }
+  .sideBar {
+    width: 25%;
+    margin-left: 10px;
+    position: sticky;
+    top: 10px;
+    margin-bottom: 30px;
+  }
+}
+@media (min-width: 1170px) {
+  .pagesContainer {
+    width: 1170px;
+  }
+}
+.figmaListContainer > p {
+  background-color: white;
+  color: rgb(190, 0, 0);
+  border-bottom: 5px solid rgb(190, 0, 0);
+  padding: 10px 10px;
+  margin: 0px;
+  font-weight: bold;
+}
+.figmaListContainer {
+  margin-top: 30px;
+  border: 1px solid rgba(190, 0, 0, 0.1);
+}
+.productListContainer > p {
+  background-color: rgb(255, 43, 43);
+  color: white;
+  padding: 10px 10px;
+  margin: 0px;
+}
+.productListContainer > div > p,
+.figmaListContainer > div > p {
+  margin: 0px;
+}
+.productListContainer > div > img,
+.figmaListContainer > div > img {
+  width: 100%;
+  transition: 0.7s ease;
+}
+.productListContainer > div,
+.figmaListContainer > div {
+  overflow: hidden;
+}
+.productListContainer > div:hover,
+.figmaListContainer > div:hover {
+  cursor: pointer;
+}
+.productListContainer > div > img:hover,
+.figmaListContainer > div > img:hover {
+  transform: scale(1.2, 1.2);
+}
+p:has(img) {
+  display: flex;
+  justify-content: center;
+}
